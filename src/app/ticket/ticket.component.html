@@ -1,0 +1,77 @@
+<div class="bg-1 text-center">
+  <h2>Travel Request</h2>
+  <br>
+</div>
+
+<form #pageForm="ngForm" (ngSubmit)= "pageForm.form.valid && onSubmit()" [mustNotMatch]="['departure', 'destination']">
+  <div class="form-row">
+    <div class="form-group col-md-6 md-6">
+      <label for="departure"> Origination Airport:  </label>
+        <select class="form-control" id="departure"
+                required
+                [(ngModel)]="itenerary.departure"
+                name="departure"
+                #departure="ngModel"
+                [ngClass]="{ 'is-invalid': pageForm.submitted && departure.invalid }">
+          <option  *ngFor="let airport of Airport" [value]="airport"> {{airport}}</option>
+        </select>
+        <div *ngIf="pageForm.submitted && departure.invalid" class="invalid-feedback">
+          <p *ngIf="departure.errors.required"> Departure Airport is required!</p>
+          <p *ngIf="departure.errors.mustNotMatch">Departure and Destination must not be the same.</p>
+        </div>
+    </div>
+
+      <div class="form-group col-md-6 md-6">
+        <label for="destination"> Destination Airport:  </label>
+          <select class="form-control" id="destination"
+                  required
+                  [(ngModel)]="itenerary.destination"
+                  name="destination"
+                  #destination="ngModel"
+                  [ngClass]="{ 'is-invalid': pageForm.submitted && destination.invalid }">
+            <option  *ngFor="let airport of Airport" [value]="airport"> {{airport}}</option>
+          </select>
+          <div *ngIf="pageForm.submitted && destination.invalid" class="invalid-feedback">
+            <p *ngIf="destination.errors.required"> Destination Airport is required!</p>
+            <p *ngIf="destination.errors.mustNotMatch">Departure and Destination must not be the same.</p>
+          </div>
+      </div>
+
+    <div class="form-group col-md-6 md-6">
+        <label for="dateOfTravel"> Date of travel:  </label>
+        <input class="form-control" id="dateOfTravel"
+                  required
+                  [(ngModel)]="itenerary.dateOfTravel"
+                  name="dateOfTravel"
+                  #dateOfTravel="ngModel"
+                  type="date"
+                  [ngClass]="{ 'is-invalid': pageForm.submitted && dateOfTravel.invalid }">
+        <div *ngIf="pageForm.submitted && dateOfTravel.invalid" class="invalid-feedback">
+          <p *ngIf="dateOfTravel.errors.required"> Departure Date is required!</p>
+        </div>
+      </div>
+
+    <div class="form-group col-md-6 md-6">
+      <label for="numTravelers"> Number of Travelers:  </label>
+      <input class="form-control" id="numTravelers"
+                required
+                [(ngModel)]="itenerary.numTravelers"
+                name="numTravelers"
+                #numTravelers="ngModel"
+                type="number"
+                min="1"
+                max="99"
+                [ngClass]="{ 'is-invalid': pageForm.submitted && numTravelers.invalid }">
+      <div *ngIf="pageForm.submitted && numTravelers.invalid" class="invalid-feedback">
+        <p *ngIf="numTravelers.errors.required"> At least one traveler is required!</p>
+      </div>
+    </div>
+  </div>
+
+    <button type="submit" class="btn btn-primary btn-block" >Submit</button>
+
+</form>
+<br><br>
+<div class="text-center">
+  <h5> {{displayTravel}} </h5>
+</div>
