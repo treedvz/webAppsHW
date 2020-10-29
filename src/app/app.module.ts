@@ -14,7 +14,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: 'ticket', component:TicketComponent},
-  {path: 'about', component:AboutComponent}
+  {path: 'about', component:AboutComponent},
+  {path: '', redirectTo: '/about', pathMatch: 'full'}
 ]
 
 @NgModule({

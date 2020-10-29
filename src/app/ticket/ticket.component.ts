@@ -72,14 +72,10 @@ export class TicketComponent implements OnInit {
     'HNL'
     ];
 
-    //public numTravelers:number;
     public displayTravel:string;
 
   onSubmit(): void {
-    //if(this.itenerary.numTravelers<1) this.itenerary.numTravelers =1;
     console.log(this.itenerary);
-    //this.displayTravel = "Total Ticket price for "+ Math.abs(this.itenerary.numTravelers) + " travelers: $"+this.ticketPrice
-    //this.displayTravel = "Total Ticket price for "+  Math.abs(this.itenerary.numTravelers) + " travelers: $"+this.ticketPrice + " FROM: "+this.itenerary.departure+" TO: "+this.itenerary.destination+" ON: "+this.itenerary.dateOfTravel;
     this.displayTravel = "Departing on: "+this.itenerary.dateOfTravel+",\tDeparting from: "+this.itenerary.departure+",\tArriving to: "+this.itenerary.destination+",\tNumber of Travelers: "+Math.abs(this.itenerary.numTravelers)+",\tTotal Price: $"+this.ticketPrice;
   }
 }
